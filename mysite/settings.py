@@ -26,6 +26,12 @@ SECRET_KEY = 'tpovp!c^)_8+^q1ru%(s=pv6ngbs&zklwbmywm&4+5u77(1tgw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+CORS_ALLOWED_ORIGINS = [
+    "https://localhost:3000",
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
 ALLOWED_HOSTS = ['ancient-temple-61211.herokuapp.com', '127.0.0.1']
 
 
