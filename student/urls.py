@@ -7,5 +7,5 @@ routers.register(r'students', views.StudentViewSet)
 
 urlpatterns = [
     path('', include(routers.urls)),
-    # path('api_auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api_auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
