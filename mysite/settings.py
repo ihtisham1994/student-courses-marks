@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import django_heroku
+import os 
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -78,8 +79,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dejurquaeqo66m',
+        'HOST': 'ec2-54-90-13-87.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'hioekinhjyeiaj' ,
+        'PASSWORD': 'cee7e5a79d98de9c59f98fba2033c0bda2448aef9c28da725a1dcdd29442dc7a' , 
     }
 }
 
