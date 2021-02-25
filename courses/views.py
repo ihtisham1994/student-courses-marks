@@ -23,7 +23,7 @@ def Course_list (request ):
         return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'POST', 'PUT'])
+@api_view(['GET', 'POST'])
 def student_marks_list ( request ):
     if request.method == 'GET':
         obj = StudentMarks.objects.all()
@@ -35,35 +35,24 @@ def student_marks_list ( request ):
             serializer.save()
             return Response(data=request.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'PUT':
-        serializer = StudentMarksSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response( serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# class StudentMarkDelete(APIView):
-#     def delete(request, id=None):
-#         return Response({"message": 'hello there'})
-
-@api_view(['DELETE'])
-def Student_Marks_Delete( request, pk ):
+@api_view(['DELETE', 'PUT'])
+def Student_Marks_Update_Delete( request, pk ):
     if request.method == 'DELETE':
         try:
-            print("hello")
             studentmark = StudentMarks.objects.get(pk=pk)
             studentmark.delete()
-            return Response(status=status.HTTP_200_SUCCESS)
+            return Response(status=status.HTTP_200_OK)
         except studentmark.DoesNotExist:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-
-# @api_view(['PUT'])
-# def Student_Marks_Update( request, pk ):
-#     if request.method == 'PUT':
-#         try:
-#             studentmark = StudentMarks.objects.get(pk=pk)
-#             studentmark.delete()
-#             return Response(status=status.HTTP_200_SUCCESS)
-#         except studentmark.DoesNotExist:
-#             return Response(status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PUT':
+        try:
+            studentmark = StudentMarks.objects.get(pk=pk)
+            serializer = StudentMarksSerializer( studentmark, data=request.data );
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except studentmark.DoesNotExist:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
