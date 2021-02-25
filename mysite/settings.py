@@ -25,7 +25,7 @@ SECRET_KEY = 'tpovp!c^)_8+^q1ru%(s=pv6ngbs&zklwbmywm&4+5u77(1tgw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ancient-temple-61211.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -122,3 +122,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
